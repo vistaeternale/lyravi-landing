@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lyravi — Your Daily Life Companion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5EFE6;
+    --terracotta: #B8705A;
+    --terracotta-dark: #9E5C48;
+    --terracotta-light: #D4967F;
+    --warm-white: #FAF6F1;
+    --text-dark: #2C1810;
+    --text-mid: #6B4A3A;
+    --text-light: #9B7B6E;
+    --card-bg: #FFFAF6;
+    --border: #E8D9CC;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cream);
+    color: var(--text-dark);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 60px;
+    background: rgba(245,239,230,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    letter-spacing: -0.02em;
+  }
+  .nav-logo span { color: var(--terracotta); font-style: italic; }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text-mid);
+    font-size: 0.88rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--terracotta); }
+  .nav-cta {
+    background: var(--terracotta);
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 100px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .nav-cta:hover { background: var(--terracotta-dark); transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 120px 60px 80px;
+    gap: 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(184,112,90,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .hero-text { animation: fadeUp 0.9s ease both; }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(184,112,90,0.12);
+    color: var(--terracotta);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 24px;
+    border: 1px solid rgba(184,112,90,0.25);
+  }
+  .hero-badge::before { content: '✦'; font-size: 0.7rem; }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--text-dark);
+    margin-bottom: 24px;
+  }
+  h1 em { color: var(--terracotta); font-style: italic; }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--text-mid);
+    max-width: 480px;
+    margin-bottom: 40px;
+  }
+
+  .hero-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--terracotta);
+    color: white;
+    border: none;
+    padding: 16px 32px;
+    border-radius: 100px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    display: flex; align-items: center; gap: 8px;
+    text-decoration: none;
+  }
+  .btn-primary:hover {
+    background: var(--terracotta-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(184,112,90,0.35);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--text-mid);
+    border: 1.5px solid var(--border);
+    padding: 15px 28px;
+    border-radius: 100px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 400;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+    text-decoration: none;
+  }
+  .btn-secondary:hover { border-color: var(--terracotta); color: var(--terracotta); }
+
+  .hero-social-proof {
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .avatars { display: flex; }
+  .avatars span {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    border: 2px solid var(--cream);
+    margin-left: -8px;
+    background: var(--terracotta-light);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem;
+    color: white;
+    font-weight: 500;
+  }
+  .avatars span:first-child { margin-left: 0; }
+  .avatars span:nth-child(2) { background: var(--terracotta); }
+  .avatars span:nth-child(3) { background: #C4846B; }
+  .social-text { font-size: 0.85rem; color: var(--text-light); }
+  .social-text strong { color: var(--terracotta); }
+
+  /* PHONE MOCKUP */
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeUp 0.9s 0.2s ease both;
+    position: relative;
+  }
+
+  .phone-wrap {
+    position: relative;
+    transform: rotate(2deg);
+    transition: transform 0.4s;
+  }
+  .phone-wrap:hover { transform: rotate(0deg) scale(1.02); }
+
+  .phone {
+    width: 280px;
+    background: var(--warm-white);
+    border-radius: 40px;
+    padding: 20px 16px;
+    box-shadow: 0 40px 80px rgba(44,24,16,0.18), 0 8px 24px rgba(184,112,90,0.12);
+    border: 1px solid var(--border);
+    position: relative;
+  }
+  .phone::before {
+    content: '';
+    position: absolute;
+    top: 14px; left: 50%;
+    transform: translateX(-50%);
+    width: 80px; height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+  }
+  .phone-inner { padding-top: 16px; }
+
+  .p-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+  .p-greeting { font-size: 0.7rem; color: var(--text-light); }
+  .p-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .p-name .sparkle { color: var(--terracotta); font-size: 1rem; }
+  .p-icons { display: flex; gap: 10px; color: var(--text-light); font-size: 0.9rem; }
+
+  .p-btn {
+    width: 100%;
+    background: var(--terracotta);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 14px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    cursor: default;
+  }
+
+  .p-section-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  .p-empty-card {
+    background: var(--cream);
+    border-radius: 14px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 18px;
+    color: var(--text-light);
+    font-size: 0.72rem;
+  }
+  .p-empty-icon { font-size: 1.2rem; margin-bottom: 4px; }
+
+  .p-habits { display: flex; gap: 8px; margin-bottom: 18px; }
+  .p-habit-card {
+    flex: 1;
+    background: var(--cream);
+    border-radius: 14px;
+    padding: 12px 8px;
+    text-align: center;
+    font-size: 0.68rem;
+    color: var(--text-dark);
+  }
+  .p-habit-icon { font-size: 1.2rem; margin-bottom: 4px; }
+  .p-habit-streak { color: var(--terracotta); font-size: 0.65rem; margin-top: 2px; }
+
+  .p-tab-bar {
+    display: flex;
+    justify-content: space-around;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+    margin-top: 8px;
+  }
+  .p-tab { text-align: center; font-size: 0.58rem; color: var(--text-light); }
+  .p-tab.active { color: var(--terracotta); }
+  .p-tab-icon { font-size: 0.95rem; display: block; margin-bottom: 2px; }
+
+  /* FLOATING CARDS */
+  .float-card {
+    position: absolute;
+    background: white;
+    border-radius: 16px;
+    padding: 12px 16px;
+    box-shadow: 0 8px 32px rgba(44,24,16,0.12);
+    border: 1px solid var(--border);
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+  .float-card-1 {
+    top: 20px; left: -100px;
+    animation: float 4s ease-in-out infinite;
+  }
+  .float-card-2 {
+    bottom: 80px; right: -90px;
+    animation: float 4s 1.5s ease-in-out infinite;
+  }
+  .fc-label { font-size: 0.65rem; color: var(--text-light); margin-bottom: 2px; }
+  .fc-val { font-weight: 500; color: var(--text-dark); display: flex; align-items: center; gap: 4px; }
+  .fc-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--terracotta); }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  /* FEATURES */
+  .features {
+    padding: 100px 60px;
+    background: var(--warm-white);
+  }
+  .section-label {
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    line-height: 1.15;
+    color: var(--text-dark);
+    margin-bottom: 16px;
+    max-width: 560px;
+  }
+  .section-sub {
+    font-size: 1rem;
+    color: var(--text-mid);
+    line-height: 1.7;
+    max-width: 520px;
+    margin-bottom: 60px;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .feature-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px 28px;
+    transition: transform 0.25s, box-shadow 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .feature-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--terracotta), var(--terracotta-light));
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+  .feature-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(44,24,16,0.1); }
+  .feature-card:hover::after { opacity: 1; }
+
+  .feature-icon {
+    font-size: 2rem;
+    margin-bottom: 16px;
+    display: block;
+  }
+  .feature-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+  }
+  .feature-desc { font-size: 0.9rem; color: var(--text-mid); line-height: 1.65; }
+
+  /* TESTIMONIALS */
+  .testimonials {
+    padding: 100px 60px;
+    background: var(--cream);
+  }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 60px;
+  }
+  .testimonial-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 28px;
+  }
+  .stars { color: var(--terracotta); font-size: 0.85rem; margin-bottom: 12px; letter-spacing: 2px; }
+  .quote {
+    font-size: 0.93rem;
+    line-height: 1.7;
+    color: var(--text-mid);
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+  .reviewer { display: flex; align-items: center; gap: 10px; }
+  .reviewer-avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--terracotta-light);
+    display: flex; align-items: center; justify-content: center;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+  .reviewer-name { font-size: 0.88rem; font-weight: 500; color: var(--text-dark); }
+  .reviewer-handle { font-size: 0.78rem; color: var(--text-light); }
+
+  /* CTA */
+  .cta-section {
+    padding: 100px 60px;
+    background: var(--terracotta);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: -150px; left: 50%; transform: translateX(-50%);
+    width: 600px; height: 600px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .cta-section::after {
+    content: '';
+    position: absolute;
+    bottom: -100px; right: -100px;
+    width: 400px; height: 400px;
+    background: rgba(0,0,0,0.06);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .cta-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    color: white;
+    margin-bottom: 16px;
+    line-height: 1.15;
+    position: relative;
+    z-index: 1;
+  }
+  .cta-section h2 em { font-style: italic; opacity: 0.85; }
+  .cta-sub {
+    color: rgba(255,255,255,0.8);
+    font-size: 1.05rem;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 1;
+  }
+  .cta-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+  }
+  .btn-white {
+    background: white;
+    color: var(--terracotta);
+    border: none;
+    padding: 16px 32px;
+    border-radius: 100px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.2s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-white:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,0,0,0.15); }
+  .btn-outline-white {
+    background: transparent;
+    color: white;
+    border: 1.5px solid rgba(255,255,255,0.5);
+    padding: 15px 28px;
+    border-radius: 100px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 400;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+  }
+  .btn-outline-white:hover { border-color: white; }
+
+  .cta-note {
+    margin-top: 20px;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.6);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* MODAL */
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(44,24,16,0.5);
+    backdrop-filter: blur(4px);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+  }
+  .modal.active { display: flex; }
+  .modal-content {
+    background: var(--card-bg);
+    border-radius: 24px;
+    padding: 48px 40px;
+    max-width: 420px;
+    width: 90%;
+    box-shadow: 0 20px 60px rgba(44,24,16,0.25);
+    animation: slideUp 0.3s ease;
+  }
+  .modal-close {
+    position: absolute;
+    top: 20px; right: 20px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--text-light);
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  .modal-close:hover { color: var(--text-dark); }
+  .modal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+  }
+  .modal-sub {
+    font-size: 0.9rem;
+    color: var(--text-mid);
+    margin-bottom: 24px;
+    line-height: 1.6;
+  }
+  .modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .modal-input {
+    padding: 12px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    transition: border-color 0.2s;
+  }
+  .modal-input:focus {
+    outline: none;
+    border-color: var(--terracotta);
+    box-shadow: 0 0 0 3px rgba(184,112,90,0.1);
+  }
+  .modal-submit {
+    background: var(--terracotta);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 8px;
+  }
+  .modal-submit:hover { background: var(--terracotta-dark); }
+  .modal-success {
+    text-align: center;
+    display: none;
+  }
+  .modal-success.show { display: block; }
+  .success-icon {
+    font-size: 3rem;
+    margin-bottom: 16px;
+  }
+  .success-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+  }
+  .success-msg {
+    font-size: 0.9rem;
+    color: var(--text-mid);
+    margin-bottom: 20px;
+  }
+  .modal-close-btn {
+    background: var(--terracotta);
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .modal-close-btn:hover { background: var(--terracotta-dark); }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--text-dark);
+    color: rgba(255,255,255,0.5);
+    padding: 40px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: white;
+  }
+  .footer-logo span { color: var(--terracotta-light); font-style: italic; }
+  footer p { font-size: 0.82rem; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* MOBILE */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 100px 24px 60px; text-align: center; }
+    .hero-sub { margin: 0 auto 32px; }
+    .hero-actions { justify-content: center; }
+    .hero-social-proof { justify-content: center; }
+    .hero-visual { display: none; }
+    .features { padding: 60px 24px; }
+    .features-grid { grid-template-columns: 1fr; }
+    .testimonials { padding: 60px 24px; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .cta-section { padding: 60px 24px; }
+    footer { flex-direction: column; gap: 12px; padding: 32px 24px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Lyra<span>vi</span></div>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+  </ul>
+  <a href="https://lyravi.app" class="nav-cta">Get Started Free</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-badge">Your AI Life Companion</div>
+    <h1>Build habits.<br>Live with <em>intention.</em></h1>
+    <p class="hero-sub">Lyravi brings your priorities, habits, journal, and calendar into one warm, intelligent space — with an AI that knows you.</p>
+    <div class="hero-actions">
+      <a href="https://lyravi.app" class="btn-primary">
+        <span>→</span> Start on Web
+      </a>
+      <a href="/about" class="btn-secondary">Learn more</a>
+    </div>
+    <div class="hero-social-proof">
+      <div class="avatars">
+        <span>S</span><span>M</span><span>J</span>
+      </div>
+      <p class="social-text">Loved by <strong>12,000+</strong> intentional people</p>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <!-- floating cards -->
+    <div class="float-card float-card-1">
+      <div class="fc-label">Today's streak</div>
+      <div class="fc-val"><span class="fc-dot"></span> 🔥 14 days running</div>
+    </div>
+    <div class="float-card float-card-2">
+      <div class="fc-label">AI Daily Brief ready</div>
+      <div class="fc-val">✦ Good morning, Alvaro</div>
+    </div>
+
+    <!-- Phone mockup -->
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="phone-inner">
+          <div class="p-header">
+            <div>
+              <div class="p-greeting">Good evening,</div>
+              <div class="p-name">Alvaro <span class="sparkle">✦</span></div>
+            </div>
+            <div class="p-icons">📊 ⚙️</div>
+          </div>
+
+          <div class="p-btn">✦ &nbsp; AI Daily Brief</div>
+
+          <div class="p-section-label">Today's Priorities</div>
+          <div class="p-empty-card">
+            <div class="p-empty-icon">🕐</div>
+            No priorities set for today
+          </div>
+
+          <div class="p-section-label">Habit Streaks</div>
+          <div class="p-habits">
+            <div class="p-habit-card">
+              <div class="p-habit-icon">📚</div>
+              Read
+              <div class="p-habit-streak">🔥 1</div>
+            </div>
+            <div class="p-habit-card">
+              <div class="p-habit-icon">💧</div>
+              Drink water
+              <div class="p-habit-streak">🔥 1</div>
+            </div>
+          </div>
+
+          <div class="p-tab-bar">
+            <div class="p-tab active"><span class="p-tab-icon">🏠</span>Home</div>
+            <div class="p-tab"><span class="p-tab-icon">📅</span>Calendar</div>
+            <div class="p-tab"><span class="p-tab-icon">☑️</span>To-Do</div>
+            <div class="p-tab"><span class="p-tab-icon">🔄</span>Habits</div>
+            <div class="p-tab"><span class="p-tab-icon">📖</span>Journal</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="section-label">Everything you need</div>
+  <h2 class="section-title">One app for your whole life</h2>
+  <p class="section-sub">From morning routine to evening reflection — Lyravi connects the dots so you can focus on what matters.</p>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <span class="feature-icon">✦</span>
+      <div class="feature-title">AI Daily Brief</div>
+      <p class="feature-desc">Start each day with a personalized summary of your priorities, habits, and schedule — generated by an AI that actually knows your life.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🔥</span>
+      <div class="feature-title">Habit Streaks</div>
+      <p class="feature-desc">Build lasting habits with gentle streak tracking. Celebrate consistency, not perfection — small wins compound into big change.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">📅</span>
+      <div class="feature-title">Smart Calendar</div>
+      <p class="feature-desc">See your week at a glance. Lyravi integrates your events and priorities so you always know what's coming and can plan with confidence.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">☑️</span>
+      <div class="feature-title">Daily Priorities</div>
+      <p class="feature-desc">Cut through the noise. Set what truly matters for today and let Lyravi surface your most important tasks every morning.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">📖</span>
+      <div class="feature-title">Guided Journal</div>
+      <p class="feature-desc">Reflect, capture ideas, and process your day with thoughtful prompts that help you grow — not just record.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">📊</span>
+      <div class="feature-title">Progress Insights</div>
+      <p class="feature-desc">See how your habits, mood, and productivity connect over time. Beautiful charts that make self-improvement feel rewarding.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="section-label">Loved by users</div>
+  <h2 class="section-title">What people are saying</h2>
+
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="quote">"The AI Daily Brief changed my mornings completely. I feel grounded before I even open my inbox."</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">S</div>
+        <div>
+          <div class="reviewer-name">Sofia M.</div>
+          <div class="reviewer-handle">@sofiam_writes</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="quote">"I've tried every productivity app. Lyravi is the first one that actually feels human. It fits my life, not the other way around."</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar" style="background: var(--terracotta);">J</div>
+        <div>
+          <div class="reviewer-name">James T.</div>
+          <div class="reviewer-handle">@jtdesign</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="quote">"The habit streaks kept me consistent for the first time in years. And the journal prompts are genuinely thoughtful."</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar" style="background: #C4846B;">R</div>
+        <div>
+          <div class="reviewer-name">Rania K.</div>
+          <div class="reviewer-handle">@raniakcoach</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Ready to live with <em>intention?</em></h2>
+  <p class="cta-sub">Start building better days on web. iOS and Android coming soon.</p>
+  <div class="cta-buttons">
+    <a href="https://lyravi.app" class="btn-white">→ Start on Web</a>
+    <button onclick="openWaitlistModal()" class="btn-outline-white">Join the waitlist for mobile</button>
+  </div>
+  <p class="cta-note">Free to start. No credit card required.</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Lyra<span>vi</span></div>
+  <div style="display:flex;gap:24px;">
+    <a href="/about" style="font-size:0.82rem;color:rgba(255,255,255,0.5);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">About</a>
+    <a href="/privacy" style="font-size:0.82rem;color:rgba(255,255,255,0.5);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Privacy Policy</a>
+    <a href="/terms" style="font-size:0.82rem;color:rgba(255,255,255,0.5);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Terms of Service</a>
+  </div>
+  <p>© 2026 Lyravi. All rights reserved.</p>
+</footer>
+
+<!-- WAITLIST MODAL -->
+<div id="waitlistModal" class="modal" onclick="if(event.target === this) closeWaitlistModal()">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeWaitlistModal()">✕</button>
+    
+    <div id="modalForm">
+      <h3 class="modal-title">Join the waitlist</h3>
+      <p class="modal-sub">Be among the first to get Lyravi on iOS and Android. We'll let you know as soon as it's available.</p>
+      <form class="modal-form" onsubmit="submitWaitlist(event)">
+        <input 
+          type="text" 
+          class="modal-input" 
+          placeholder="Your name" 
+          required
+        />
+        <input 
+          type="email" 
+          class="modal-input" 
+          placeholder="your@email.com" 
+          required
+        />
+        <button type="submit" class="modal-submit">Join the waitlist</button>
+      </form>
+    </div>
+
+    <div id="modalSuccess" class="modal-success">
+      <div class="success-icon">✓</div>
+      <h3 class="success-title">You're on the list!</h3>
+      <p class="success-msg">We'll email you as soon as Lyravi launches on iOS and Android.</p>
+      <button class="modal-close-btn" onclick="closeWaitlistModal()">Done</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openWaitlistModal() {
+    document.getElementById('waitlistModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeWaitlistModal() {
+    document.getElementById('waitlistModal').classList.remove('active');
+    document.body.style.overflow = 'auto';
+    // Reset form
+    document.getElementById('modalForm').style.display = 'block';
+    document.getElementById('modalSuccess').classList.remove('show');
+    document.querySelector('.modal-form').reset();
+  }
+
+  function submitWaitlist(event) {
+    event.preventDefault();
+    
+    const form = event.target;
+    const name = form.querySelector('input[type="text"]').value;
+    const email = form.querySelector('input[type="email"]').value;
+    
+    // In production, send this to your backend/email service
+    console.log('Waitlist signup:', { name, email });
+    
+    // Show success state
+    document.getElementById('modalForm').style.display = 'none';
+    document.getElementById('modalSuccess').classList.add('show');
+    
+    // Optional: Send to a service (example with fetch)
+    // You can replace this with your preferred email service (Mailchimp, ConvertKit, etc.)
+    // fetch('/api/waitlist', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({ name, email })
+    // });
+  }
+</script>
