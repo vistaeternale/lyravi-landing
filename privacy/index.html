@@ -13,13 +13,14 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Lyravi — Your Daily Life Companion">
 <meta name="twitter:description" content="The AI-powered daily companion that weaves tasks, habits, and mindfulness into intentional living.">
+<meta name="description" content="Read the Lyravi Privacy Policy. Learn how we collect, use, and protect your personal data including Google Calendar information.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --cream: #F5EFE6;
-    --terracotta: #B8705A;
-    --terracotta-dark: #9E5C48;
+    --terracotta: #6E3C2F;
+    --terracotta-dark: #6E3C2F;
     --terracotta-light: #D4967F;
     --warm-white: #FAF6F1;
     --text-dark: #2C1810;
@@ -75,16 +76,45 @@
     .data-table { display: block; overflow-x: auto; }
     footer { padding: 32px 24px; flex-direction: column; align-items: flex-start; }
   }
+  .skip-link {
+    position: absolute;
+    top: -100px;
+    left: 16px;
+    background: var(--terracotta);
+    color: white;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    z-index: 9999;
+    transition: top 0.2s;
+  }
+  .skip-link:focus {
+    top: 16px;
+  }
+  *:focus-visible {
+    outline: 2px solid var(--terracotta);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  button:focus-visible,
+  a:focus-visible {
+    outline: 2px solid var(--terracotta);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
 </style>
 </head>
 <body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
 
-<nav>
-  <a href="/" class="nav-logo" style="display:flex;align-items:center;gap:10px;text-decoration:none;"><svg width="32" height="32" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="1024" height="1024" rx="224" fill="#FAF7F2"/><path d="M 295 618 Q 385 378 512 432 Q 639 486 729 302" stroke="#C4694A" stroke-width="28" fill="none" stroke-linecap="round"/><path d="M 295 668 Q 388 432 512 482 Q 636 532 729 352" stroke="#D98A6E" stroke-width="18" fill="none" stroke-linecap="round" opacity="0.65"/><path d="M 295 718 Q 391 486 512 532 Q 633 578 729 402" stroke="#C8882A" stroke-width="11" fill="none" stroke-linecap="round" opacity="0.4"/><circle cx="295" cy="618" r="26" fill="#C4694A"/><circle cx="729" cy="302" r="26" fill="#C4694A"/></svg><span style="color:var(--terracotta);">Lyravi</span></a>
-  <a href="https://lyravi.app" class="nav-cta">Get Started Free</a>
+<nav role="navigation" aria-label="Main navigation">
+  <a href="/" class="nav-logo" style="display:flex;align-items:center;gap:10px;text-decoration:none;"><svg width="32" height="32" viewBox="0 0 1024 1024" aria-hidden="true" focusable="false" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="1024" height="1024" rx="224" fill="#FAF7F2"/><path d="M 295 618 Q 385 378 512 432 Q 639 486 729 302" stroke="#C4694A" stroke-width="28" fill="none" stroke-linecap="round"/><path d="M 295 668 Q 388 432 512 482 Q 636 532 729 352" stroke="#D98A6E" stroke-width="18" fill="none" stroke-linecap="round" opacity="0.65"/><path d="M 295 718 Q 391 486 512 532 Q 633 578 729 402" stroke="#C8882A" stroke-width="11" fill="none" stroke-linecap="round" opacity="0.4"/><circle cx="295" cy="618" r="26" fill="#C4694A"/><circle cx="729" cy="302" r="26" fill="#C4694A"/></svg><span style="color:var(--terracotta);">Lyravi</span></a>
+  <a href="https://lyravi.app" class="nav-cta" aria-label="Get started with Lyravi for free">Get Started Free</a>
 </nav>
 
-<div class="page-header">
+<div class="page-header" id="main-content">
   <p class="page-label">Legal</p>
   <h1>Privacy Policy</h1>
   <p>Last updated: April 30, 2026 &nbsp;·&nbsp; Effective: April 30, 2026</p>
@@ -286,7 +316,7 @@
 </div>
 
 <footer>
-  <div class="footer-logo" style="display:flex;align-items:center;gap:8px;"><svg width="24" height="24" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="1024" height="1024" rx="224" fill="#FAF7F2"/><path d="M 295 618 Q 385 378 512 432 Q 639 486 729 302" stroke="#C4694A" stroke-width="28" fill="none" stroke-linecap="round"/><path d="M 295 668 Q 388 432 512 482 Q 636 532 729 352" stroke="#D98A6E" stroke-width="18" fill="none" stroke-linecap="round" opacity="0.65"/><circle cx="295" cy="618" r="26" fill="#C4694A"/><circle cx="729" cy="302" r="26" fill="#C4694A"/></svg><span style="color:var(--terracotta);">Lyravi</span></div>
+  <div class="footer-logo" style="display:flex;align-items:center;gap:8px;"><svg width="24" height="24" viewBox="0 0 1024 1024" aria-hidden="true" focusable="false" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="1024" height="1024" rx="224" fill="#FAF7F2"/><path d="M 295 618 Q 385 378 512 432 Q 639 486 729 302" stroke="#C4694A" stroke-width="28" fill="none" stroke-linecap="round"/><path d="M 295 668 Q 388 432 512 482 Q 636 532 729 352" stroke="#D98A6E" stroke-width="18" fill="none" stroke-linecap="round" opacity="0.65"/><circle cx="295" cy="618" r="26" fill="#C4694A"/><circle cx="729" cy="302" r="26" fill="#C4694A"/></svg><span style="color:var(--terracotta);">Lyravi</span></div>
   <div class="footer-links">
     <a href="/">Home</a>
     <a href="/about">About</a>
