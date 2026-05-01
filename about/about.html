@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>About Lyravi — AI Daily Companion</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAyNCIgaGVpZ2h0PSIxMDI0IiB2aWV3Qm94PSIwIDAgMTAyNCAxMDI0IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDwhLS0gUm91bmRlZCByZWN0IGJhY2tncm91bmQgLSBhcHAgc3RvcmUgc2FmZSBhcmVhIC0tPgogIDxyZWN0IHdpZHRoPSIxMDI0IiBoZWlnaHQ9IjEwMjQiIHJ4PSIyMjQiIGZpbGw9IiNGQUY3RjIiLz4KICA8IS0tIFN1YnRsZSB0ZXh0dXJlIHJpbmcgLS0+CiAgPGNpcmNsZSBjeD0iNTEyIiBjeT0iNTEyIiByPSIzODAiIHN0cm9rZT0iI0U4REREMCIgc3Ryb2tlLXdpZHRoPSIzIiBmaWxsPSJub25lIi8+CiAgPCEtLSBBcmMgMSDigJQgcHJpbWFyeSB0ZXJyYWNvdHRhLCBib2xkIC0tPgogIDxwYXRoIGQ9Ik0gMjk1IDYxOCBRIDM4NSAzNzggNTEyIDQzMiBRIDYzOSA0ODYgNzI5IDMwMiIgc3Ryb2tlPSIjQzQ2OTRBIiBzdHJva2Utd2lkdGg9IjI4IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8IS0tIEFyYyAyIOKAlCBjbGF5LCBtZWRpdW0gLS0+CiAgPHBhdGggZD0iTSAyOTUgNjY4IFEgMzg4IDQzMiA1MTIgNDgyIFEgNjM2IDUzMiA3MjkgMzUyIiBzdHJva2U9IiNEOThBNkUiIHN0cm9rZS13aWR0aD0iMTgiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgb3BhY2l0eT0iMC42NSIvPgogIDwhLS0gQXJjIDMg4oCUIGFtYmVyLCBmaW5lIC0tPgogIDxwYXRoIGQ9Ik0gMjk1IDcxOCBRIDM5MSA0ODYgNTEyIDUzMiBRIDYzMyA1NzggNzI5IDQwMiIgc3Ryb2tlPSIjQzg4ODJBIiBzdHJva2Utd2lkdGg9IjExIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiIG9wYWNpdHk9IjAuNCIvPgogIDwhLS0gQW5jaG9yIGRvdHMgLS0+CiAgPGNpcmNsZSBjeD0iMjk1IiBjeT0iNjE4IiByPSIyNiIgZmlsbD0iI0M0Njk0QSIvPgogIDxjaXJjbGUgY3g9IjcyOSIgY3k9IjMwMiIgcj0iMjYiIGZpbGw9IiNDNDY5NEEiLz4KICA8IS0tIElubmVyIGhpZ2hsaWdodCBkb3QgLS0+CiAgPGNpcmNsZSBjeD0iNTEyIiBjeT0iNDYwIiByPSIxMCIgZmlsbD0iIzNEMkIxRiIgb3BhY2l0eT0iMC4xNSIvPgo8L3N2Zz4K">
+<meta property="og:title" content="Lyravi — Your Daily Life Companion">
+<meta property="og:description" content="The AI-powered daily companion that weaves tasks, habits, and mindfulness into intentional living.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://lyravi.com">
+<meta property="og:image" content="https://lyravi.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Lyravi — Your Daily Life Companion">
+<meta name="twitter:description" content="The AI-powered daily companion that weaves tasks, habits, and mindfulness into intentional living.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5EFE6;
+    --terracotta: #B8705A;
+    --terracotta-dark: #9E5C48;
+    --terracotta-light: #D4967F;
+    --warm-white: #FAF6F1;
+    --text-dark: #2C1810;
+    --text-mid: #6B4A3A;
+    --text-light: #9B7B6E;
+    --card-bg: #FFFAF6;
+    --border: #E8D9CC;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cream);
+    color: var(--text-dark);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 60px;
+    background: rgba(245,239,230,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    letter-spacing: -0.02em;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--terracotta); font-style: italic; }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text-mid);
+    font-size: 0.88rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--terracotta); }
+  .nav-cta {
+    background: var(--terracotta);
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 100px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .nav-cta:hover { background: var(--terracotta-dark); transform: translateY(-1px); }
+
+  /* HEADER */
+  .page-header {
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 140px 60px 80px;
+    background: linear-gradient(135deg, rgba(184,112,90,0.08) 0%, rgba(245,239,230,0) 100%);
+  }
+  .page-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.15;
+    color: var(--text-dark);
+    margin-bottom: 24px;
+    max-width: 700px;
+  }
+  .page-header p {
+    font-size: 1.1rem;
+    color: var(--text-mid);
+    max-width: 600px;
+    line-height: 1.7;
+  }
+
+  /* CONTENT */
+  .content-section {
+    padding: 80px 60px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .content-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: var(--text-dark);
+    margin-bottom: 24px;
+    line-height: 1.2;
+  }
+  .content-section p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-mid);
+    margin-bottom: 20px;
+  }
+  .content-section ul {
+    list-style: none;
+    margin: 24px 0;
+  }
+  .content-section li {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-mid);
+    margin-bottom: 12px;
+    padding-left: 28px;
+    position: relative;
+  }
+  .content-section li::before {
+    content: '✦';
+    position: absolute;
+    left: 0;
+    color: var(--terracotta);
+    font-size: 0.9rem;
+  }
+
+  .highlight {
+    color: var(--terracotta);
+    font-weight: 500;
+  }
+
+  /* DIVIDER */
+  hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 80px 60px;
+  }
+
+  /* VALUES GRID */
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-top: 60px;
+  }
+  .value-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px 28px;
+    text-align: center;
+  }
+  .value-icon {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+  }
+  .value-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--text-dark);
+    margin-bottom: 12px;
+  }
+  .value-desc {
+    font-size: 0.9rem;
+    color: var(--text-mid);
+    line-height: 1.7;
+  }
+
+  /* CTA */
+  .final-cta {
+    background: var(--terracotta);
+    color: white;
+    padding: 80px 60px;
+    text-align: center;
+    border-radius: 24px;
+    margin: 80px 60px;
+  }
+  .final-cta h2 {
+    color: white;
+    margin-bottom: 16px;
+  }
+  .final-cta p {
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 32px;
+  }
+  .btn-white {
+    background: white;
+    color: var(--terracotta);
+    border: none;
+    padding: 16px 32px;
+    border-radius: 100px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.15s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-white:hover { transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer {
+    background: var(--text-dark);
+    color: rgba(255,255,255,0.5);
+    padding: 40px 60px;
+    text-align: center;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: white;
+    margin-bottom: 8px;
+  }
+  .footer-logo span { color: var(--terracotta-light); font-style: italic; }
+  footer p { font-size: 0.82rem; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .page-header { animation: fadeUp 0.9s ease both; }
+
+  /* MOBILE */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .page-header { padding: 100px 24px 60px; }
+    .content-section { padding: 60px 24px; }
+    .content-section h2 { font-size: 1.8rem; }
+    .values-grid { grid-template-columns: 1fr; }
+    .final-cta { padding: 60px 24px; margin: 60px 24px; }
+    footer { padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo" style="display:flex;align-items:center;gap:10px;text-decoration:none;"><svg width="32" height="32" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="1024" height="1024" rx="224" fill="#FAF7F2"/><path d="M 295 618 Q 385 378 512 432 Q 639 486 729 302" stroke="#C4694A" stroke-width="28" fill="none" stroke-linecap="round"/><path d="M 295 668 Q 388 432 512 482 Q 636 532 729 352" stroke="#D98A6E" stroke-width="18" fill="none" stroke-linecap="round" opacity="0.65"/><path d="M 295 718 Q 391 486 512 532 Q 633 578 729 402" stroke="#C8882A" stroke-width="11" fill="none" stroke-linecap="round" opacity="0.4"/><circle cx="295" cy="618" r="26" fill="#C4694A"/><circle cx="729" cy="302" r="26" fill="#C4694A"/></svg><span style="color:var(--terracotta);">Lyravi</span></a>
+  <ul class="nav-links">
+    <li><a href="/#features">Features</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/#testimonials">Reviews</a></li>
+  </ul>
+  <a href="https://lyravi.app" class="nav-cta">Get Started Free</a>
+</nav>
+
+<!-- HEADER -->
+<section class="page-header">
+  <h1>Built for the life you want to live</h1>
+  <p>Lyravi is the intersection of intention and intelligence — designed to help you build habits that matter, track progress that inspires, and live with clarity every single day.</p>
+</section>
+
+<!-- STORY -->
+<section class="content-section">
+  <h2>The story behind Lyravi</h2>
+  <p>
+    We created Lyravi because the apps we were using felt fragmented. Your calendar lived here, your habits there, your journal somewhere else. Your life isn't compartmentalized — so why should the tools that support it be?
+  </p>
+  <p>
+    We wanted something that brought together everything that matters: your daily priorities, your habits and streaks, your calendar, your reflections. And we wanted it to feel human — warm, thoughtful, never pushy. Something that understood that progress isn't about perfection. It's about rhythm.
+  </p>
+  <p>
+    That's Lyravi. <span class="highlight">One app. One rhythm. One life.</span>
+  </p>
+</section>
+
+<hr />
+
+<!-- HOW IT WORKS -->
+<section class="content-section">
+  <h2>How Lyravi works</h2>
+  <p>Every morning, Lyravi meets you with an <span class="highlight">AI Daily Brief</span> — a personalized summary of your priorities, habits, and the day ahead. It learns what matters to you and surfaces it first.</p>
+  <p>Throughout the day, you track habits you're building, capture to-dos as they come up, and stay connected to your calendar. The app never lectures. It gently guides.</p>
+  <p>At day's end, reflect with thoughtful journal prompts. Over time, you'll see patterns in your mood, productivity, and growth — visualized in ways that inspire, not overwhelm.</p>
+  <p>Lyravi is the friend in your pocket who knows you're trying to do good work, build better habits, and live with intention.</p>
+</section>
+
+<hr />
+
+<!-- VALUES -->
+<section class="content-section">
+  <h2>Our core values</h2>
+  <div class="values-grid">
+    <div class="value-card">
+      <div class="value-icon">🌿</div>
+      <h3 class="value-title">Intentional</h3>
+      <p class="value-desc">Everything in Lyravi exists for a reason. We obsess over every detail because your time matters.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">🤝</div>
+      <h3 class="value-title">Human-first</h3>
+      <p class="value-desc">AI should feel like a friend, not a boss. We use intelligence to empower, never to manipulate.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">✦</div>
+      <h3 class="value-title">Simple</h3>
+      <p class="value-desc">Less noise, more signal. Beautiful design and thoughtful UX mean you focus on what matters.</p>
+    </div>
+  </div>
+</section>
+
+<hr />
+
+<!-- ROADMAP -->
+<section class="content-section">
+  <h2>What's coming</h2>
+  <p>Lyravi is live on web today. We're working around the clock to bring native iOS and Android apps to your pocket.</p>
+  <p>Beyond that, we're exploring:</p>
+  <ul>
+    <li>Integration with your favorite apps (Google Calendar, Notion, etc.)</li>
+    <li>Team features so you can build habits together</li>
+    <li>Advanced insights powered by deeper AI analysis</li>
+    <li>Offline support so Lyravi is always with you</li>
+    <li>A community hub to share wins and stay inspired</li>
+  </ul>
+  <p>Early ideas, shipped iteratively. <span class="highlight">You're in early.</span> We want your voice shaping where Lyravi goes.</p>
+</section>
+
+<!-- FINAL CTA -->
+<div class="final-cta">
+  <h2>Ready to start?</h2>
+  <p>Join thousands of people building better days.</p>
+  <a href="https://lyravi.app" class="btn-white">Start on Web</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo" style="display:flex;align-items:center;gap:8px;"><svg width="24" height="24" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="1024" height="1024" rx="224" fill="#FAF7F2"/><path d="M 295 618 Q 385 378 512 432 Q 639 486 729 302" stroke="#C4694A" stroke-width="28" fill="none" stroke-linecap="round"/><path d="M 295 668 Q 388 432 512 482 Q 636 532 729 352" stroke="#D98A6E" stroke-width="18" fill="none" stroke-linecap="round" opacity="0.65"/><circle cx="295" cy="618" r="26" fill="#C4694A"/><circle cx="729" cy="302" r="26" fill="#C4694A"/></svg><span style="color:var(--terracotta);">Lyravi</span></div>
+  <p>© 2026 Lyravi. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
